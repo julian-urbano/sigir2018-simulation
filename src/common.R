@@ -1,11 +1,10 @@
 .COLLECTIONS <- c("web2010", "web2011", "web2012", "web2013", "web2014")
 .MEASURES <- c("ap", "ndcg20", "err20", "p10", "p20", "rr")
 
-# Set checkpoint and load simIReff #################################################################
+# Load simIReff ####################################################################################
 
-checkpoint::checkpoint("2018-04-20")
-if(!"simIReff" %in% installed.packages()[,1])
-	devtools::install_github(repo = "julian-urbano/simIReff", ref = "7619a02cb9a4d5079e6afeb801a7b199d4c37109")
+#devtools::install_github(repo = "julian-urbano/simIReff", ref = "develop")
+library(simIReff)
 
 # Utils ############################################################################################
 
