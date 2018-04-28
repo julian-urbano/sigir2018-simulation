@@ -17,15 +17,14 @@ for(measure in .MEASURES) {
     effs.files <- list.files(in.path, full.names = TRUE)
     foreach(ei = seq_along(effs.files)) %dopar% {
       eff.file <- effs.files[ei]
-      cat(basename(eff.file)); flush.console()
       set.seed(ei)
 
       eff <- load.object(eff.file)
       teff <- try(effTransform(eff, abs.tol = 1e-5), silent = TRUE)
       if(!inherits(teff, "try-error")) {
-        #cat(file = "trans.txt", append = TRUE, eff.file,
-            eff$mean-mean(eff$data), teff$mean-mean(eff$data), "\n")
         save.object(teff, file.path(out.path, basename(eff.file)))
+      } else {
+        cat(eff.file, " failed.\n")
       }
     }
   }
