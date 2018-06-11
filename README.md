@@ -63,7 +63,7 @@ plot(expected, observed)
 
 * The TREC results in `data/` are anonymized and posted here with permission from the organizers.
 * Databases and their contents are distributed under the terms of the [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
-* Software is distributed under the terms of the [GNU General Public License v3](http://www.gnu.org/licenses/gpl-3.0-standalone.html).
+* Software is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 When using this archive, please [cite](CITE.bib) the above paper:
 
