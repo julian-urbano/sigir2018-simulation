@@ -15,7 +15,7 @@ All code is written for [R](https://www.r-project.org). You will need the follow
 
 ## How to reproduce the results in the paper 
 
-The source files in `src/` need to be run in order. You can run each file individually by running `Rscript src/<file>.R`. They will store intermediate data in `scratch` and the final data in `output`.
+The source files in `src/` need to be run in order. You can run each file individually by running `Rscript src/<file>.R`. They will store intermediate data in `scratch/` and the final data in `output/`.
 
 **It is important that you always run from the base directory**.
 
