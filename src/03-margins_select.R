@@ -11,21 +11,22 @@ for(measure in .MEASURES) {
     dir.create(out1.path, recursive = TRUE, showWarnings = FALSE)
     dir.create(out2.path, recursive = TRUE, showWarnings = FALSE)
 
-    dat <- read.csv(paste0("data/", collection, "_", measure, ".csv"))
-    fits <- matrix("", ncol = 3, nrow = ncol(dat), dimnames = list(NULL, c("logLik", "AIC", "BIC")))
+    dat <- read.csv(paste0("data/", collection, "_", measure, ".csv")) # original data
 
-    for(i in 1:nrow(fits)) {
+    fits <- matrix("", ncol = 3, nrow = ncol(dat), dimnames = list(NULL, c("logLik", "AIC", "BIC")))
+    for(i in 1:nrow(fits)) { # for every system
       sysname <- colnames(dat)[i]
       set.seed(i)
 
+      # load all distributions fitted for the system and select
       eff.files <- list.files(in.path, pattern = paste0("^", sysname, "_.+$"), full.names = TRUE)
       effs <- lapply(eff.files, load.object)
       effs <- sample(effs) # shuffle to minimize biases due to order
-      for(method in colnames(fits)) {
+      for(method in colnames(fits)) { # for every selection criteria
         eff <- effSelect(effs, method = method)
         fits[i, method] <- eff$model$type
 
-        save.object(eff, file.path(out1.path, method, sysname))
+        save.object(eff, file.path(out1.path, method, sysname)) # save selected
       }
     }
 

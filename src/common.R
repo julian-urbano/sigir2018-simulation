@@ -1,9 +1,6 @@
 .COLLECTIONS <- c("web2010", "web2011", "web2012", "web2013", "web2014")
 .MEASURES <- c("ap", "ndcg20", "err20", "p10", "p20", "rr")
 
-# Load simIReff ####################################################################################
-
-#devtools::install_github(repo = "julian-urbano/simIReff", ref = "develop")
 library(simIReff)
 
 # Utils ############################################################################################
@@ -31,10 +28,10 @@ indexOfDuplicates <- function(dat) {
 # Plots ############################################################################################
 
 my.dev.width <- function(num=1){
-  return(12 / num)
+  return(16 / num)
 }
 my.dev.par <- function(mar = 0, mgp = 0, ...){
-  par(mar = c(3.1,2.9,2,0.2) + mar, mgp = c(1.9,.7,0) + mgp, ...)
+  par(mar = c(2.5,2.5,1.8,0.2) + mar, mgp = c(1.5,.5,0) + mgp, ...)
 }
 my.dev.abline <- function(col="darkgrey", lwd=1, lty=2, ...){
   abline(col=col, lwd=lwd, lty=lty, ...)
@@ -59,3 +56,10 @@ my.dev.set.win <- function() {
 }
 my.dev.set.pdf()
 #my.dev.set.win()
+my.axis <- function(side, at, labels, ...) {
+  if(missing(labels))
+    labels <- as.character(at)
+  for(i in seq_along(at))
+    axis(side = side, at = at[i], labels = labels[i], tick = FALSE, ...)
+  axis(side = side, at = at, labels = NA, ...)
+}

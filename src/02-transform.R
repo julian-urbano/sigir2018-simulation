@@ -2,7 +2,6 @@ source("src/common.R")
 source("src/io.R")
 
 library(doParallel)
-
 stopImplicitCluster()
 registerDoParallel(cores = max(1, detectCores()-1))
 
@@ -15,11 +14,11 @@ for(measure in .MEASURES) {
     dir.create(out.path, recursive = TRUE, showWarnings = FALSE)
 
     effs.files <- list.files(in.path, full.names = TRUE)
-    foreach(ei = seq_along(effs.files)) %dopar% {
+    foreach(ei = seq_along(effs.files)) %dopar% { # for every fitted distribution
       eff.file <- effs.files[ei]
       set.seed(ei)
 
-      eff <- load.object(eff.file)
+      eff <- load.object(eff.file) # load and transform
       teff <- try(effTransform(eff, abs.tol = 1e-5), silent = TRUE)
       if(!inherits(teff, "try-error")) {
         save.object(teff, file.path(out.path, basename(eff.file)))
