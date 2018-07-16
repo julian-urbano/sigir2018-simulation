@@ -71,5 +71,6 @@ When using this archive, please [cite](CITE.bib) the above paper:
       author = {Urbano, Juli\'{a}n and Nagler, Thomas},
       booktitle = {International ACM SIGIR Conference on Research and Development in Information Retrieval},
       title = {{Stochastic Simulation of Test Collections: Evaluation Scores}},
+      pages = {695--704},
       year = {2018}
     }
