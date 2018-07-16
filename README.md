@@ -45,7 +45,7 @@ Note that the code will run for all combinations of collection and measure. For 
 
 ## How to simulate your own data
 
-A full R package has been developed for this: [`simIReff`](https://cran.r-project.org/web/packages/simIReff/index.html). Please refer to it's documentation for details. The simplest use case would be something like:
+A full R package has been developed for this: [`simIReff`](https://github.com/julian-urbano/simIReff). Please refer to it's documentation for details. The simplest use case would be something like:
 
 ```r
 d <- read.csv("data/web2012_p10.csv") # read original data
