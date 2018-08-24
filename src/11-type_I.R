@@ -1,6 +1,7 @@
 source("src/common.R")
+
+library(simIReff)
 library(VineCopula)
-library(rvinecopulib)
 library(doParallel)
 stopImplicitCluster()
 registerDoParallel(cores = max(1, detectCores()-1))
@@ -60,10 +61,7 @@ for(measure in c("ap", "p10")) {
   # Split-half resampling from the copula (design A1) ==============================================
   
   trials <- 1000
-  allres <- foreach(i = 1:(n-1), .combine = rbind) %dopar% { # iterate over systems
-    library(simIReff)
-    library(VineCopula)
-    library(rvinecopulib)
+  allres <- foreach(i = 1:(n-1), .combine = rbind, .packages = c("simIReff", "VineCopula")) %dopar% { # iterate over systems
     cat("\n",i);flush.console()
     set.seed(i)
     
@@ -105,10 +103,7 @@ for(measure in c("ap", "p10")) {
   # Simulation from the copula with same margins (design A2) =======================================
   
   trials <- 10000
-  allres <- foreach(i = 1:n, .combine = rbind) %dopar% { # iterate over systems
-    library(simIReff)
-    library(VineCopula)
-    library(rvinecopulib)
+  allres <- foreach(i = 1:n, .combine = rbind, .packages = c("simIReff", "VineCopula")) %dopar% { # iterate over systems
     cat("\n",i);flush.console()
     set.seed(i)
     
@@ -153,10 +148,7 @@ for(measure in c("ap", "p10")) {
   trials <- 10000
   mu <- colMeans(dat) # means observed on original data
   
-  allres <- foreach(i = 1:n, .combine = rbind) %dopar% { # iterate over systems
-    library(simIReff)
-    library(VineCopula)
-    library(rvinecopulib)
+  allres <- foreach(i = 1:n, .combine = rbind, .packages = c("simIReff", "VineCopula")) %dopar% { # iterate over systems
     cat("\n",i);flush.console()
     set.seed(i)
     

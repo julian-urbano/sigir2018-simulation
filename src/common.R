@@ -1,8 +1,6 @@
 .COLLECTIONS <- c("web2010", "web2011", "web2012", "web2013", "web2014")
 .MEASURES <- c("ap", "ndcg20", "err20", "p10", "p20", "rr")
 
-library(simIReff)
-
 # Utils ############################################################################################
 
 indexOfTopN <- function(X, p = .75) {

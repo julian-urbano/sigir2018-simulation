@@ -1,6 +1,7 @@
 source("src/common.R")
 source("src/io.R")
 
+library(simIReff)
 library(rvinecopulib)
 library(doParallel)
 stopImplicitCluster()
@@ -23,7 +24,7 @@ for(measure in .MEASURES) {
 
     cop <- load.object(file.path(in.path, "AIC_rvine_full")) # load copula
 
-    r <- foreach(trial = 1:1000, .combine = rbind, .inorder = TRUE) %dopar% {
+    r <- foreach(trial = 1:1000, .combine = rbind, .inorder = TRUE, .packages = c("simIReff", "rvinecopulib")) %dopar% {
       set.seed(trial)
       cat("\n", collection, measure, trial); flush.console()
 

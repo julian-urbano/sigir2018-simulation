@@ -1,6 +1,7 @@
 source("src/common.R")
 source("src/io.R")
 
+library(simIReff)
 library(VineCopula)
 library(doParallel)
 stopImplicitCluster()
@@ -10,7 +11,7 @@ out.path <- "output/05-bicop_types"
 dir.create(out.path, showWarnings = FALSE, recursive = TRUE)
 
 for(measure in .MEASURES) {
-  foreach(ci = seq_along(.COLLECTIONS)) %dopar% {
+  foreach(ci = seq_along(.COLLECTIONS), .packages = c("simIReff", "VineCopula")) %dopar% {
     collection <- .COLLECTIONS[ci]
     cat("\n", collection, measure); flush.console()
 

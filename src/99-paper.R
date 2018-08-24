@@ -1,9 +1,9 @@
 source("src/common.R")
 source("src/io.R")
+
 library(VineCopula)
-library(rvinecopulib)
+library(simIReff)
 library(corrplot)
-library(doParallel)
 
 measure.prettynames <- list(ap = "AP", ndcg20 = "nDCG@20", err20 = "ERR@20",
                             p10 = "P@10", p20 = "P@20", rr = "RR")

@@ -1,5 +1,6 @@
 source("src/common.R")
-library(rvinecopulib)
+
+library(simIReff)
 library(VineCopula)
 library(doParallel)
 stopImplicitCluster()
@@ -53,7 +54,7 @@ dat <- dat[, order(colMeans(dat), decreasing = TRUE)]
 for(sample.FUN.name in c("res", "cop_res", "cop")) {
   trials1 <- 200 # number of system pairs to use
   trials2 <- 1000 # number of trials per system pair
-  res <- foreach(trial = 1:trials1, .combine = rbind) %dopar% {
+  res <- foreach(trial = 1:trials1, .combine = rbind, .packages = c("simIReff", "VineCopula")) %dopar% {
     cat("\n", sample.FUN.name, trial);flush.console()
     
     set.seed(trial)

@@ -1,6 +1,7 @@
 source("src/common.R")
 source("src/io.R")
 
+library(simIReff)
 library(doParallel)
 stopImplicitCluster()
 registerDoParallel(cores = max(1, detectCores()-1))
@@ -14,7 +15,7 @@ for(measure in .MEASURES) {
     dir.create(out.path, recursive = TRUE, showWarnings = FALSE)
 
     effs.files <- list.files(in.path, full.names = TRUE)
-    foreach(ei = seq_along(effs.files)) %dopar% { # for every fitted distribution
+    foreach(ei = seq_along(effs.files), .packages = "simIReff") %dopar% { # for every fitted distribution
       eff.file <- effs.files[ei]
       set.seed(ei)
 

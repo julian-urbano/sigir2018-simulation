@@ -1,6 +1,8 @@
 source("src/common.R")
 source("src/io.R")
 
+library(simIReff)
+
 for(measure in .MEASURES) {
   for(collection in .COLLECTIONS) {
     cat("\n", collection, measure); flush.console()

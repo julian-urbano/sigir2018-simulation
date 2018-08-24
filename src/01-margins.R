@@ -1,12 +1,13 @@
 source("src/common.R")
 source("src/io.R")
 
+library(simIReff)
 library(doParallel)
 stopImplicitCluster()
 registerDoParallel(cores = max(1, detectCores()-1))
 
 for(measure in .MEASURES) {
-  foreach(ci = seq_along(.COLLECTIONS)) %dopar% {
+  foreach(ci = seq_along(.COLLECTIONS), .packages = "simIReff") %dopar% {
     collection <- .COLLECTIONS[ci]
     cat("\n", collection, measure); flush.console()
     set.seed(ci)
